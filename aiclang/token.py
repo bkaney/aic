@@ -38,29 +38,47 @@ class TokKind(Enum):
     NONE = auto()
     EXTERN = auto()
 
-    LBRACE = auto()  # {
-    RBRACE = auto()  # }
-    LPAREN = auto()  # (
-    RPAREN = auto()  # )
-    LBRACK = auto()  # [
-    RBRACK = auto()  # ]
-    SEMI = auto()    # ;
-    COLON = auto()   # :
-    COLONCOLON = auto()  # ::
-    COMMA = auto()   # ,
-    DOT = auto()     # .
-    EQ = auto()      # =
-    ARROW = auto()   # ->
-    QUESTION = auto()# ?
-    AMP = auto()     # &
-    STAR = auto()    # *
-    PLUS = auto()    # +
-    MINUS = auto()   # -
-    SLASH = auto()   # /
-    PERCENT = auto() # %
-    BANG = auto()    # !
+    MUT = auto()
+    BREAK = auto()
+    CONTINUE = auto()
+    SHADOW = auto()
+    TYPE = auto()
 
-    DOC_COMMENT = auto()  # leading /// ... (line)
+    LBRACE = auto()      # {
+    RBRACE = auto()      # }
+    LPAREN = auto()      # (
+    RPAREN = auto()      # )
+    LBRACK = auto()      # [
+    RBRACK = auto()      # ]
+    SEMI = auto()        # ;
+    COLON = auto()       # :
+    COLONCOLON = auto()  # ::
+    COMMA = auto()       # ,
+    DOT = auto()         # .
+    EQ = auto()          # =
+    FAT_ARROW = auto()   # =>
+    THIN_ARROW = auto()  # ->
+    QUESTION = auto()    # ?
+    AMP = auto()         # &
+    STAR = auto()        # *
+    PLUS = auto()        # +
+    MINUS = auto()       # -
+    SLASH = auto()       # /
+    PERCENT = auto()     # %
+    BANG = auto()        # !
+    PIPE = auto()        # |
+    LT = auto()          # <
+    GT = auto()          # >
+    LTEQ = auto()        # <=
+    GTEQ = auto()        # >=
+    EQEQ = auto()        # ==
+    NEQ = auto()         # !=
+    ANDAND = auto()      # &&
+    OROR = auto()        # ||
+
+    DOC_COMMENT = auto()    # leading /// ... (line)
+    LINE_COMMENT = auto()   # // ... (line, trivia)
+    BLOCK_COMMENT = auto()  # /* ... */ (trivia)
 
 
 KEYWORDS = {
@@ -90,6 +108,11 @@ KEYWORDS = {
     "false": TokKind.FALSE,
     "none": TokKind.NONE,
     "extern": TokKind.EXTERN,
+    "mut": TokKind.MUT,
+    "break": TokKind.BREAK,
+    "continue": TokKind.CONTINUE,
+    "shadow": TokKind.SHADOW,
+    "type": TokKind.TYPE,
 }
 
 

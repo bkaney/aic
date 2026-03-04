@@ -4,14 +4,12 @@ import argparse
 import json
 import os
 import sys
-from dataclasses import asdict
-from typing import List, Tuple
+from typing import List
 
 from .diagnostics import Diagnostic
 from .formatter import format_file
 from .lexer import Lexer, LexerConfig
 from .parser import Parser
-from .token import Token
 
 
 EXIT_SUCCESS = 0

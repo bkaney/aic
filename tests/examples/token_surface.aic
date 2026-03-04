@@ -1,0 +1,75 @@
+// === token_surface.aic ===
+// Exercises every token kind at least once.
+
+/// Module declaration
+module tests.token_surface;
+
+// ── Keywords ──────────────────────────────────────────────────────────────
+use std::io;
+pub extern struct Foo {}
+pub trait Bar {}
+impl Bar for Foo {}
+fn identity(x: i32) -> i32 { return x; }
+async fn fetch() {}
+let x = 1;
+const MAX: i32 = 100;
+mut y = 2;
+type Alias = i32;
+shadow z = 3;
+
+// ── Control flow ──────────────────────────────────────────────────────────
+fn flow(n: i32) -> i32 {
+    if n > 0 { return n; } else { return 0; }
+    loop { break; }
+    for i in 0..10 { continue; }
+    match n {
+        0 => 0,
+        _ => n,
+    }
+    where n: i32
+    effects io
+    await fetch()
+    n
+}
+
+// ── Literals ──────────────────────────────────────────────────────────────
+let dec  = 42;
+let hex1 = 0xFF;
+let hex2 = 0xDEAD_BEEF;
+let flt1 = 3.14;
+let flt2 = 2e5;
+let bt   = true;
+let bf   = false;
+let bn   = none;
+let s    = "hello\nworld\t!";
+let raw  = r"no\escape";
+let byt  = b"bytes";
+
+// ── Operators ─────────────────────────────────────────────────────────────
+let ops = 1 + 2 - 3 * 4 / 5 % 6;
+let cmp = a < b && b > c || d <= e || f >= g;
+let eq  = (a == b) != (c == d);
+let bit = x & y | z;
+let unary = !flag;
+let assign = v = 7;
+let eqeq  = a == b;
+
+// ── Delimiters and punctuation ────────────────────────────────────────────
+fn punct(a: i32, b: i32) -> i32 {
+    let arr = [1, 2, 3];
+    let tup = (a, b);
+    let path = std::io;
+    let opt: i32? = none;
+    a.field;
+}
+
+// ── Arrows ────────────────────────────────────────────────────────────────
+fn arrows() {
+    let fat = match x { 1 => true, _ => false };
+    let thin: fn() -> i32 = identity;
+}
+
+// ── Pipe / logical ────────────────────────────────────────────────────────
+let either = a | b;
+let both   = a && b;
+let neither = a || b;

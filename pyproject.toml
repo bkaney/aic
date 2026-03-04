@@ -1,0 +1,12 @@
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+# E702: multiple statements on one line (semicolons) — intentional in lexer dispatch table
+ignore = ["E702"]
+
+[tool.taskipy.tasks]
+test    = { cmd = "python -m pytest tests/ -q",                                          help = "Run the test suite" }
+lint    = { cmd = "python scripts/lint.py",                                              help = "Syntax check + ruff lint" }
+fix     = { cmd = "python scripts/lint.py --fix",                                        help = "Lint and auto-fix safe issues" }
+check   = { cmd = "python scripts/lint.py && python -m pytest tests/ -q",               help = "Full check: lint then test" }
