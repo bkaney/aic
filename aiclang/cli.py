@@ -9,7 +9,7 @@ from typing import List
 from .diagnostics import Diagnostic
 from .formatter import format_file
 from .lexer import Lexer, LexerConfig
-from .parser import Parser
+from .parser import Parser, merge_doc_comments
 
 
 EXIT_SUCCESS = 0
@@ -68,7 +68,8 @@ def run_fmt(paths: List[str], check: bool, emit_json: bool) -> int:
     for path in files:
         src = read_file(path)
         lex = Lexer(src, LexerConfig(file=path))
-        toks = lex.lex()
+        toks, trivia = lex.lex_with_trivia()
+        toks = merge_doc_comments(toks, trivia)
         parser = Parser(toks)
         res = parser.parse_file()
         if res.file is None:
@@ -105,7 +106,8 @@ def run_check(paths: List[str], emit_json: bool) -> int:
     for path in files:
         src = read_file(path)
         lex = Lexer(src, LexerConfig(file=path))
-        toks = lex.lex()
+        toks, trivia = lex.lex_with_trivia()
+        toks = merge_doc_comments(toks, trivia)
         parser = Parser(toks)
         res = parser.parse_file()
         if res.file is None or res.diagnostics:
